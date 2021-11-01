@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_nav"
+    app:startDestination="@id/detailsFragment">
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.detials.DetailsFragment"
+        android:label="fragment_detials"
+        tools:layout="@layout/fragment_detials" >
+
+
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="android-app://example.com/details/{movie}"  />
+        <argument
+            android:name="movie"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="mostafa" />
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.detials.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" >
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="android-app://example.com/second/{movie}"  />
+
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="http://example.com/second/{movie}"  />
+        <argument
+            android:name="movie"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="mostafa" />
+    </fragment>
+</navigation>

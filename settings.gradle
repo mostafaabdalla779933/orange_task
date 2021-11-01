@@ -1,0 +1,5 @@
+rootProject.name = "orange_task"
+include ':app'
+include ':list'
+include ':detials'
+include ':core'
