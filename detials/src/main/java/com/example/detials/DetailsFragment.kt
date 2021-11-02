@@ -11,10 +11,7 @@ import com.example.core.model.MovieModel
 import com.example.core.network.Constant
 import com.example.detials.databinding.FragmentDetialsBinding
 import com.google.gson.Gson
-import com.google.gson.JsonIOException
-import com.google.gson.JsonSyntaxException
-import com.google.gson.stream.JsonReader
-import java.io.StringReader
+
 
 class DetailsFragment : Fragment() {
 

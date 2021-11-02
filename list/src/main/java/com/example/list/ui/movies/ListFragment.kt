@@ -39,15 +39,22 @@ class ListFragment : BaseFragment<FragmentListBinding,MoviesViewModel>(){
 
     override fun onFragmentCreated() {
         movieAdapter = MovieAdapter { movie ->
-            findNavController().navigate(
-                    "android-app://example.com/details/${Gson().toJson(movie)}".toUri(),
-                    NavOptions.Builder()
-                        .setEnterAnim(R.anim.slide_in_right)
-                        .setExitAnim(R.anim.slide_out_left)
-                        .setPopEnterAnim(R.anim.slide_in_left)
-                        .setPopExitAnim(R.anim.slide_out_right)
-                        .build()
-            )
+
+            movieAdapter.currentList.let{
+                it.toMutableList().let{list->
+                    list.remove(movie)
+                    movieAdapter.submitList(list)
+                }
+            }
+//            findNavController().navigate(
+//                    "android-app://example.com/details/${Gson().toJson(movie)}".toUri(),
+//                    NavOptions.Builder()
+//                        .setEnterAnim(R.anim.slide_in_right)
+//                        .setExitAnim(R.anim.slide_out_left)
+//                        .setPopEnterAnim(R.anim.slide_in_left)
+//                        .setPopExitAnim(R.anim.slide_out_right)
+//                        .build()
+//            )
         }
 
         binding.rvNews.apply {
@@ -62,17 +69,6 @@ class ListFragment : BaseFragment<FragmentListBinding,MoviesViewModel>(){
                 render(it)
             }
         }
-
-
-//        if(viewModel?.newsLiveData?.value == null) {
-//            fetchData()
-//        }
-
-
-//        viewModel?.newsLiveData?.observe(viewLifecycleOwner) { list ->
-//            hideLoading()
-//            movieAdapter.submitList(list)
-//        }
     }
 
 
