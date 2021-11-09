@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "466294364827",
+    "project_id": "taskmovie",
+    "storage_bucket": "taskmovie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466294364827:android:ec2e1e25d57d36dad1043e",
+        "android_client_info": {
+          "package_name": "com.example.orange_task"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466294364827-b6h6u57oqis72uplu6nrrl8tpofspeqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVPq59g1vLgWQKoE8vS9zy9mZ_00LsgT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466294364827-b6h6u57oqis72uplu6nrrl8tpofspeqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

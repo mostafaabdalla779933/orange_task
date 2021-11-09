@@ -1,7 +1,5 @@
 package com.example.list.ui.movies
 
-
-
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -31,48 +29,36 @@ class ListFragment : BaseFragment<FragmentListBinding,MoviesViewModel>(){
         return  FragmentListBinding.inflate(layoutInflater)
     }
 
-
     override fun initViewModel() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MoviesViewModel::class.java)
     }
 
-
     override fun onFragmentCreated() {
         movieAdapter = MovieAdapter { movie ->
 
-            movieAdapter.currentList.let{
-                it.toMutableList().let{list->
-                    list.remove(movie)
-                    movieAdapter.submitList(list)
-                }
-            }
-//            findNavController().navigate(
-//                    "android-app://example.com/details/${Gson().toJson(movie)}".toUri(),
-//                    NavOptions.Builder()
-//                        .setEnterAnim(R.anim.slide_in_right)
-//                        .setExitAnim(R.anim.slide_out_left)
-//                        .setPopEnterAnim(R.anim.slide_in_left)
-//                        .setPopExitAnim(R.anim.slide_out_right)
-//                        .build()
-//            )
+            findNavController().navigate(
+                    "android-app://example.com/details/${Gson().toJson(movie)}".toUri(),
+                    NavOptions.Builder()
+                        .setEnterAnim(R.anim.slide_in_right)
+                        .setExitAnim(R.anim.slide_out_left)
+                        .setPopEnterAnim(R.anim.slide_in_left)
+                        .setPopExitAnim(R.anim.slide_out_right)
+                        .build()
+            )
         }
 
         binding.rvNews.apply {
             adapter = movieAdapter
         }
 
-
         fetchData()
-
         lifecycleScope.launch {
             viewModel?.state?.collect {
                 render(it)
             }
         }
     }
-
-
-    fun render(state:ListViewState){
+    private fun render(state:ListViewState){
         when(state){
             is ListViewState.MovieList ->{
                 hideLoading()
@@ -92,16 +78,12 @@ class ListFragment : BaseFragment<FragmentListBinding,MoviesViewModel>(){
             }
         }
     }
-
     private fun showReload(){
         Snackbar.make(binding.root ,"connection failed", Snackbar.LENGTH_INDEFINITE )
             .setAction("reload") {
                 fetchData()
             }.show()
-
     }
-
-
     private fun fetchData(){
         showLoading()
         lifecycleScope.launch {

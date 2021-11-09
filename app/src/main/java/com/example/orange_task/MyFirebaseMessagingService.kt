@@ -1,63 +1,66 @@
 package com.example.orange_task
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.format.Time
 import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.list.ui.host.HostActivity
-import com.example.orange_task.databinding.ActivityMainBinding
-import com.google.firebase.messaging.FirebaseMessaging
+import com.example.orange_task.MostafaActivity.Companion.DEEP
+import com.example.orange_task.MostafaActivity.Companion.LINK
+import com.example.orange_task.MostafaActivity.Companion.TYPE
+import com.example.orange_task.MostafaActivity.Companion.WEB
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
+
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
+class MyFirebaseMessagingService :FirebaseMessagingService() {
 
 
-class MainActivity : AppCompatActivity() {
+    override fun onMessageReceived(message: RemoteMessage) {
+        super.onMessageReceived(message)
+        Log.i("main", "onMessageReceived: ${message.data}")
+        Log.i("main", "onMessageReceived: ${message.notification?.body}")
 
-    lateinit var binding : ActivityMainBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding =ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        firebaseToken()
-        startActivity(Intent(this, HostActivity::class.java))
-        finish()
 
-    }
+        val intent  = Intent(this,HostActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-    private fun firebaseToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener {task ->
-            if (task.isSuccessful){
-                Log.i("main", "firebaseToken: ${task.result}")
-            }else{
-                Log.i("main", "firebaseToken: fail2")
-            }
+
+        val link: String?=if(!message.data.get(DEEP).isNullOrEmpty()){
+            intent.putExtra(TYPE,DEEP)
+            message.data[DEEP]
+        }else{
+            intent.putExtra(TYPE,WEB)
+            message.data[WEB]
         }
+        intent.putExtra(LINK,link)
 
-        FirebaseMessaging.getInstance().subscribeToTopic("weather")
-            .addOnFailureListener { e->
-                Log.i("main", "firebaseToken: fail1 ${e.message}")
-            }.addOnCompleteListener { task ->
-                var msg = "success"
-                if (!task.isSuccessful) {
-                   msg = "fail"
-                }
-                Log.i("main", "firebaseToken4: ${msg}")
-               Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-            }
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(browserIntent)
+
+      //  startActivity(intent)
+
+
+
+       // sendNotification(this,"mostafa")
+       // showMessage()
+
     }
 
 
     private fun showMessage(){
-        val notification = NotificationCompat.Builder(this,"movieTask")
+       val notification = NotificationCompat.Builder(this,"movieTask")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setContentTitle("mostafa")
             .setContentText("alaa")
@@ -66,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         manager.notify(190,notification.build())
 
     }
+
 
     fun sendNotification(context: Context, msg: String) {
         val channelId = context.getString(R.string.app_name)
@@ -125,5 +129,7 @@ class MainActivity : AppCompatActivity() {
         mBuilder.setContentIntent(contentIntent)
         return mBuilder.build()
     }
+
+
 
 }

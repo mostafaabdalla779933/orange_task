@@ -10,6 +10,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.core.model.MovieModel
 import com.example.core.network.Constant
+import com.example.list.R
 import com.example.list.databinding.NewsLayoutBinding
 
 
@@ -26,8 +27,8 @@ class MovieAdapter( val onclick : (MovieModel) -> Unit) : ListAdapter<MovieModel
             Glide.with(itemView.context)
                 .load(Constant.TMDB_IMAGEURL + item.posterPath)
                 .placeholder(getLoading(itemView.context))
+                .error(R.drawable.ic_back)
                 .into(rowView.ivMovie)
-
             itemView.setOnClickListener {
                 onclick(item)
             }
@@ -55,9 +56,6 @@ class MovieAdapter( val onclick : (MovieModel) -> Unit) : ListAdapter<MovieModel
         }
     }
 }
-
-
-
 // get progressbar as drawable
 fun getLoading(context: Context): CircularProgressDrawable {
     val circularProgressDrawable = CircularProgressDrawable(context)
