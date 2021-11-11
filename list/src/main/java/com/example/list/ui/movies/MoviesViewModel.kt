@@ -1,15 +1,11 @@
 package com.example.list.ui.movies
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.example.core.base.BaseCommand
 import com.example.core.base.BaseViewModel
-import com.example.core.model.MovieModel
 import com.example.list.domain.usecase.MoviesUseCase
 import com.example.orange_task.di.scheduler.SchedulersProvider
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow

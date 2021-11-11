@@ -18,7 +18,7 @@ class SecondFragment : Fragment() {
         arguments?.let { bundle ->
             bundle.getString("movie").let { artStr ->
                     binding.apply {
-                        txt.text = artStr
+                        web.loadUrl(artStr?:"")
                     }
             }
         }

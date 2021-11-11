@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 if (!task.isSuccessful) {
                    msg = "fail"
                 }
-                Log.i("main", "firebaseToken4: ${msg}")
+                Log.i("main", "firebaseToken4: $msg")
                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             }
     }

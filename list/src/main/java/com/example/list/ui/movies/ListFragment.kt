@@ -36,8 +36,18 @@ class ListFragment : BaseFragment<FragmentListBinding,MoviesViewModel>(){
     override fun onFragmentCreated() {
         movieAdapter = MovieAdapter { movie ->
 
-            findNavController().navigate(
-                    "android-app://example.com/details/${Gson().toJson(movie)}".toUri(),
+//            findNavController().navigate(
+//                    "android-app://example.com/details/${Gson().toJson(movie)}".toUri(),
+//                    NavOptions.Builder()
+//                        .setEnterAnim(R.anim.slide_in_right)
+//                        .setExitAnim(R.anim.slide_out_left)
+//                        .setPopEnterAnim(R.anim.slide_in_left)
+//                        .setPopExitAnim(R.anim.slide_out_right)
+//                        .build()
+//            )
+
+             findNavController().navigate(
+                    "android-app://example.com/second/https://www.google.com/".toUri(),
                     NavOptions.Builder()
                         .setEnterAnim(R.anim.slide_in_right)
                         .setExitAnim(R.anim.slide_out_left)
@@ -45,6 +55,8 @@ class ListFragment : BaseFragment<FragmentListBinding,MoviesViewModel>(){
                         .setPopExitAnim(R.anim.slide_out_right)
                         .build()
             )
+
+
         }
 
         binding.rvNews.apply {

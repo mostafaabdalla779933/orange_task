@@ -35,11 +35,9 @@ class MovieAdapter( val onclick : (MovieModel) -> Unit) : ListAdapter<MovieModel
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val viewBinding=
-            NewsLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return MovieViewHolder(viewBinding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
+        MovieViewHolder(NewsLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.onBind(currentList[position])

@@ -36,7 +36,7 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
 
-        val link: String?=if(!message.data.get(DEEP).isNullOrEmpty()){
+        val link: String?=if(!message.data[DEEP].isNullOrEmpty()){
             intent.putExtra(TYPE,DEEP)
             message.data[DEEP]
         }else{
