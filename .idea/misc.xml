@@ -14,10 +14,15 @@
         <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/app/src/main/res/layout/activity_main.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/app/src/main/res/layout/activity_mostafa.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/app/src/main/res/layout/activity_test.xml" value="0.22" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/detials/src/main/res/layout/activity_details.xml" value="0.24230072463768115" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/detials/src/main/res/layout/fragment_detials.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/detials/src/main/res/layout/fragment_second.xml" value="0.2346014492753623" />
         <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/drawable/ic_back.xml" value="0.2734375" />
-        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/activity_test.xml" value="0.2346014492753623" />
-        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/news_layout.xml" value="0.2346014492753623" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/activity_first_test.xml" value="0.25" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/activity_second_test.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/activity_test.xml" value="0.3820803295571576" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/fragment_list.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/mahabdullah/Downloads/projects/orange_task/list/src/main/res/layout/news_layout.xml" value="0.22" />
       </map>
     </option>
   </component>

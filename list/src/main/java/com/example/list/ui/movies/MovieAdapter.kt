@@ -2,6 +2,7 @@ package com.example.list.ui.movies
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -15,7 +16,7 @@ import com.example.list.databinding.NewsLayoutBinding
 
 
 
-class MovieAdapter( val onclick : (MovieModel) -> Unit) : ListAdapter<MovieModel, MovieAdapter.MovieViewHolder>(
+class MovieAdapter( val onclick : (MovieModel,view: View,position:Int,txt :View) -> Unit) : ListAdapter<MovieModel, MovieAdapter.MovieViewHolder>(
     Callback
 ){
 
@@ -23,14 +24,13 @@ class MovieAdapter( val onclick : (MovieModel) -> Unit) : ListAdapter<MovieModel
 
         fun onBind(item:MovieModel){
             rowView.tvTitle.text = item.title
-
             Glide.with(itemView.context)
                 .load(Constant.TMDB_IMAGEURL + item.posterPath)
                 .placeholder(getLoading(itemView.context))
                 .error(R.drawable.ic_back)
                 .into(rowView.ivMovie)
             itemView.setOnClickListener {
-                onclick(item)
+                onclick(item,rowView.ivMovie,layoutPosition,rowView.txt)
             }
         }
     }

@@ -44,5 +44,8 @@ data class MovieModel(
     val adult: Boolean? = null,
 
     @field:SerializedName("vote_count")
-    val voteCount: Int? = null
+    val voteCount: Int? = null,
+
+    val visiblity: Boolean= true,
+
 )

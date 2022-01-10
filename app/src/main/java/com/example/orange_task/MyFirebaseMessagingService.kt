@@ -1,13 +1,11 @@
 package com.example.orange_task
 
-import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.text.format.Time
 import android.util.Log
@@ -22,8 +20,8 @@ import com.example.orange_task.MostafaActivity.Companion.WEB
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-@SuppressLint("MissingFirebaseInstanceTokenRefresh")
-class MyFirebaseMessagingService :FirebaseMessagingService() {
+
+class MyFirebaseMessagingService() :FirebaseMessagingService(){
 
 
     override fun onMessageReceived(message: RemoteMessage) {
@@ -45,35 +43,25 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
         }
         intent.putExtra(LINK,link)
 
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(browserIntent)
+//        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+//        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//        startActivity(browserIntent)
 
       //  startActivity(intent)
 
-
-
-       // sendNotification(this,"mostafa")
+     //  sendNotification(this,"mostafa")
        // showMessage()
 
     }
 
-
-    private fun showMessage(){
-       val notification = NotificationCompat.Builder(this,"movieTask")
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentTitle("mostafa")
-            .setContentText("alaa")
-            .setAutoCancel(false)
-        val manager = NotificationManagerCompat.from(this)
-        manager.notify(190,notification.build())
-
+    override fun onNewToken(p0: String) {
+        super.onNewToken(p0)
     }
 
 
     fun sendNotification(context: Context, msg: String) {
         val channelId = context.getString(R.string.app_name)
-        initNotificationManager(context, channelId, msg)
+        initNotificationManager(context, channelId,msg)
     }
 
     private fun initNotificationManager(context: Context, channelId: String, msg: String) {
@@ -106,10 +94,21 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
         channelId: String,
         msg: String,
         contentIntent: PendingIntent
-    ): Notification? {
+    ): Notification{
+        val inten = Intent(applicationContext,HostActivity::class.java)
+        //inten.putExtra()
+        inten.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+
+        val contentIntent = PendingIntent.getActivity(
+            this,
+            7123,
+            inten,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
         val mBuilder = NotificationCompat.Builder(context, channelId)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
+            mBuilder.setContentIntent(contentIntent)
             mBuilder.color = ResourcesCompat.getColor(
                 context.resources,
                 R.color.black,
@@ -117,8 +116,6 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
             )
         } else mBuilder.setSmallIcon(R.drawable.ic_launcher_background)
 
-//        mBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-//                R.drawable.ico_my_orange_notification_color));
         mBuilder.setContentTitle(context.getString(R.string.app_name))
         mBuilder.setStyle(NotificationCompat.BigTextStyle().bigText(msg))
         mBuilder.setContentText(msg)
@@ -130,6 +127,21 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
         return mBuilder.build()
     }
 
+
+
+
+
+
+    private fun showMessage(){
+        val notification = NotificationCompat.Builder(this,"movieTask")
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle("mostafa")
+            .setContentText("alaa")
+            .setAutoCancel(false)
+        val manager = NotificationManagerCompat.from(this)
+        manager.notify(190,notification.build())
+
+    }
 
 
 }

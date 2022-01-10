@@ -16,6 +16,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import com.example.list.ui.host.HostActivity
+import com.example.list.uitest.FirstTestActivity
 import com.example.orange_task.databinding.ActivityMainBinding
 import com.google.firebase.messaging.FirebaseMessaging
 
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         firebaseToken()
         startActivity(Intent(this, HostActivity::class.java))
+       // startActivity(Intent(this, FirstTestActivity::class.java))
         finish()
 
     }
@@ -102,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         channelId: String,
         msg: String,
         contentIntent: PendingIntent
-    ): Notification? {
+    ): Notification {
         val mBuilder = NotificationCompat.Builder(context, channelId)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mBuilder.setSmallIcon(R.drawable.ic_launcher_background)

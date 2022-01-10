@@ -2,6 +2,8 @@ package com.example.list.ui.movies
 
 import android.util.Log
 import com.example.core.base.BaseViewModel
+import com.example.core.di.module.DISPATCHER_IO
+import com.example.core.di.module.DISPATCHER_MAIN_THREAD
 import com.example.list.domain.usecase.MoviesUseCase
 import com.example.orange_task.di.scheduler.SchedulersProvider
 import kotlinx.coroutines.*
@@ -12,12 +14,15 @@ import kotlinx.coroutines.flow.consumeAsFlow
 
 
 import javax.inject.Inject
-
+import javax.inject.Named
 
 
 class MoviesViewModel  @Inject constructor(
     val useCase: MoviesUseCase,
-    val schedulers: SchedulersProvider
+    @Named(DISPATCHER_MAIN_THREAD)
+    val dispatcherMain : CoroutineDispatcher,
+    @Named(DISPATCHER_IO)
+    val dispatcherIo:CoroutineDispatcher
 ): BaseViewModel() {
 
 
@@ -39,7 +44,7 @@ class MoviesViewModel  @Inject constructor(
         }
     }
     private fun getList(){
-        CoroutineScope(Dispatchers.IO+coroutineExceptionHandler).launch {
+        CoroutineScope(dispatcherIo+coroutineExceptionHandler).launch {
            state.value = ListViewState.MovieList(useCase.getMoviesCoro().body()?.results ?: listOf())
         }
     }

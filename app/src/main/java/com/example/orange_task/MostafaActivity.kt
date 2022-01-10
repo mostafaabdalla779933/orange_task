@@ -2,11 +2,21 @@ package com.example.orange_task
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.example.orange_task.databinding.ActivityMostafaBinding
 
 class MostafaActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMostafaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mostafa)
+        binding = ActivityMostafaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        intent?.let {
+
+            binding.txt.text = it.getStringExtra("title")
+
+        }
     }
 
 

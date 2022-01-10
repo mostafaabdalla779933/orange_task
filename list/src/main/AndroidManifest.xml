@@ -3,13 +3,17 @@
     package="com.example.list">
 
     <uses-permission android:name="android.permission.START_VIEW_PERMISSION_USAGE" />
-    <application>
 
+    <application>
+        <activity
+            android:name=".uitest.SecondTestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".uitest.FirstTestActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.host.HostActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

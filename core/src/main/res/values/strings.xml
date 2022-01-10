@@ -1,1 +1,5 @@
-<resources></resources>
+<resources>
+
+    <string name="tras">tras</string>
+    <string name="img">img</string>
+</resources>
