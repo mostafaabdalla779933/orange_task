@@ -14,12 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Orange_task">
         <activity
-            android:name="com.example.orange_task.MostafaActivity">
-            <intent-filter>
-                <action android:name="com.example.orange_task.MostafaActivity" />
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+            android:name="com.example.orange_task.MostafaActivity"/>
+
 
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding =ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firebaseToken()
-       // startActivity(Intent(this, HostActivity::class.java))
-        startActivity(Intent(this, MostafaActivity::class.java))
+       startActivity(Intent(this, HostActivity::class.java))
+       // startActivity(Intent(this, MostafaActivity::class.java))
        // startActivity(Intent(this, FirstTestActivity::class.java))
         finish()
 
