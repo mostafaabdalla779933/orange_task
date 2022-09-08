@@ -12,17 +12,20 @@ import android.view.View.MeasureSpec
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.example.core.base.BaseCommand
 import com.example.core.base.BaseFragment
 import com.example.core.model.MovieModel
 import com.example.list.R
 import com.example.list.databinding.FragmentListBinding
 import com.example.list.ui.host.HostActivity
+import com.example.list.uitest.FirstTestActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.collect
@@ -58,11 +61,19 @@ class ListFragment : BaseFragment<FragmentListBinding, MoviesViewModel>() {
                 2->navigateToActivity(movie.title?:"",view)
                 3->navigate(movie)
                 4->navigate()
+                5->{startActivity(Intent(requireContext(), FirstTestActivity::class.java))}
             }
         }
 
         binding.rvNews.apply {
             adapter = movieAdapter
+        }
+
+        sharedElementReturnTransition =  TransitionInflater.from(this.context).inflateTransition(android.R.transition.fade)
+
+        postponeEnterTransition()
+        binding.rvNews.doOnPreDraw {
+            startPostponedEnterTransition()
         }
 
         fetchData()

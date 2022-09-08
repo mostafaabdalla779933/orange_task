@@ -34,6 +34,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
@@ -116,6 +120,21 @@ dependencies {
     // Mockk.io
     def mockk_version = "1.9.3"
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+
+
+    def mockitoVersion = "3.3.1"
+    def coreTesting = "2.1.0"
+    def mockkVersion = "1.12.0"
+    def mockitoKotlinVersion = "2.2.0"
+    def junitVersion = "4.13.2"
+
+
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}"
+    testImplementation "androidx.arch.core:core-testing:${coreTesting}"
+    testImplementation "io.mockk:mockk:${mockkVersion}"
+
 
     // androidx.test
     def androidx_test = "1.1.0"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
+import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
 import com.example.core.model.MovieModel
 import com.example.core.network.Constant
@@ -31,9 +32,11 @@ class DetailsFragment : Fragment() {
 
        ViewCompat.setTransitionName(binding.ivMovie, getString(R.string.img))
 
-        sharedElementEnterTransition = ChangeBounds().apply {
-            duration = 750
-        }
+        sharedElementReturnTransition =  TransitionInflater.from(this.context).inflateTransition(R.transition.image_shared_element_transition)
+
+//        sharedElementEnterTransition = ChangeBounds().apply {
+//            duration = 750
+//        }
 //        sharedElementReturnTransition= ChangeBounds().apply {
 //            duration = 750
 //        }
